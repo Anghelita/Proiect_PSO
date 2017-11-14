@@ -26,6 +26,10 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             return url.register(ctx,params);
         }
 
+        if(method.equals("Login")) {
+            return url.login(ctx,params);
+        }
+
         if(method.equals(("getStudents")))
         {
             return url.Table(ctx,params);
