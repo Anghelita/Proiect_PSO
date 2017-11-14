@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void Login(View view) {
 
+        BackgroundTask backgroundTask = new BackgroundTask(this);
+        backgroundTask.execute("getStudents");
+
     }
 
     public void Register(View view) {

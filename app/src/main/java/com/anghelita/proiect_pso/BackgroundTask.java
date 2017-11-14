@@ -1,19 +1,8 @@
 package com.anghelita.proiect_pso;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
 
 /**
  * Created by Traian on 12-Nov-17.
@@ -32,16 +21,14 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         String method = params[0];
-        String firstname=params[1];
-        String lasttname=params[2];
-        String password=params[3];
-        String mail=params[4];
-        String phone=params[5];
 
+        if(method.equals("RegisterStudent")) {
+            return url.register(ctx,params);
+        }
 
-        if(method.equals("register")) {
-            url.register(params);
-
+        if(method.equals(("getStudents")))
+        {
+            return url.Table(ctx,params);
         }
         return null;
     }
@@ -55,7 +42,6 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String renault) {
         if(renault != null) {
             Toast.makeText(ctx, renault, Toast.LENGTH_SHORT).show();
-            //((Activity) ctx).finish();
         }
         else
             Toast.makeText(ctx,"Something went wrong!",Toast.LENGTH_SHORT).show();

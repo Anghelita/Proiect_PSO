@@ -27,18 +27,18 @@ public class Register extends AppCompatActivity {
         Phone = findViewById(R.id.editText_Phone);
     }
 
-    public void Register(View view) {
-        String method = "register";
-        String firstname=FirstName.getText().toString();
-        String lasttname=LastName.getText().toString();
+    public void Register(View view) {//TODO Sa testezi toate kkturile ca sunt corecte
+        String method = "RegisterStudent";
+        String firstName=FirstName.getText().toString();
+        String lastName=LastName.getText().toString();
         String password=Password.getText().toString();
-        String repassword=RePassword.getText().toString();
+        String rePassword=RePassword.getText().toString();
         String mail=Mail.getText().toString();
         String phone=Phone.getText().toString();
 
-        if(password.equals(repassword)) {
+        if(password.equals(rePassword)) {
             BackgroundTask backgroundTask = new BackgroundTask(this);
-            backgroundTask.execute(method, firstname, lasttname, password, mail, phone);
+            backgroundTask.execute(method, firstName, lastName, password, mail, phone);
         }
         else
         {
