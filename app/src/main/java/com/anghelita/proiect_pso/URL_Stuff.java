@@ -21,10 +21,11 @@ import java.net.URLEncoder;
 
 public class URL_Stuff {
 
-    String rer_url="http://188.27.106.116:8080";
+    private static String rer_url="http://188.27.106.116:8080";
 
 
-    public String register(Context ctx, String ... params){
+
+    public static String register(Context ctx, String ... params){
 
         try {
         URL url = new URL(rer_url+"/init.php");
@@ -64,9 +65,9 @@ public class URL_Stuff {
 
     }
 
-    public String login(Context ctx,String...params){
+    public static String login(Context ctx,String...params) {
         try {
-            URL url = new URL(rer_url+"/init.php");
+            URL url = new URL(rer_url + "/init.php");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
@@ -77,23 +78,23 @@ public class URL_Stuff {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-            String data =URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&"+
-                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode(params[0], "UTF-8");
+            String data = URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("Professor", "UTF-8") + "&" +
+                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("Login", "UTF-8") + "&" +
+                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("prof@gg", "UTF-8") + "&" +
+                    URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8");
 
 
             bufferedWriter.write(data);
-            bufferedWriter.flush();
 
             String json_string;
-            while ((json_string=bufferedReader.readLine())!=null)
-            {
-                stringBuilder.append(json_string+"\n");
+            while ((json_string = bufferedReader.readLine()) != null) {
+                stringBuilder.append(json_string + "\n");
+
             }
 
-            bufferedWriter.close();
-            outputStream.close();
             inputStream.close();
-            return stringBuilder.toString().trim();
+            outputStream.close();
+            return stringBuilder.toString().trim();//TODO o clasa care sa create packet
 
 
 
@@ -105,9 +106,10 @@ public class URL_Stuff {
             return e.getMessage().toString();
         }
 
+
     }
 
-    public String Table(Context ctx,String...params) {
+    public static String Table(Context ctx,String...params) {
         try {
             URL url = new URL("http://188.27.106.116:8080/getJson.php");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

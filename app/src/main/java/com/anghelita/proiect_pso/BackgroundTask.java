@@ -2,6 +2,7 @@ package com.anghelita.proiect_pso;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -11,11 +12,11 @@ import android.widget.Toast;
 public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     Context ctx;
-    URL_Stuff url;
+    TextView log;
 
-    BackgroundTask(Context ctx){
+    BackgroundTask(Context ctx, TextView log){
         this.ctx = ctx;
-        url = new URL_Stuff();
+        this.log = log;
     }
 
     @Override
@@ -23,16 +24,16 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         String method = params[0];
 
         if(method.equals("RegisterStudent")) {
-            return url.register(ctx,params);
+            return URL_Stuff.register(ctx,params);
         }
 
         if(method.equals("Login")) {
-            return url.login(ctx,params);
+            return URL_Stuff.login(ctx,params);
         }
 
         if(method.equals(("getStudents")))
         {
-            return url.Table(ctx,params);
+            return URL_Stuff.Table(ctx,params);
         }
         return null;
     }
@@ -43,9 +44,9 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
     }
 
     @Override
-    protected void onPostExecute(String renault) {
-        if(renault != null) {
-            Toast.makeText(ctx, renault, Toast.LENGTH_SHORT).show();
+    protected void onPostExecute(String result) {
+        if(result != null) {
+            log.setText(result);
         }
         else
             Toast.makeText(ctx,"Something went wrong!",Toast.LENGTH_SHORT).show();
