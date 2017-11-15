@@ -37,7 +37,7 @@ public class Register extends AppCompatActivity {
         String phone=Phone.getText().toString();
 
         if(password.equals(rePassword)) {
-            BackgroundTask backgroundTask = new BackgroundTask(this);
+            BackgroundTask backgroundTask = new BackgroundTask(this,null);
             backgroundTask.execute(method, firstName, lastName, password, mail, phone);
         }
         else
