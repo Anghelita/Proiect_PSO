@@ -33,9 +33,6 @@ public class URL_Stuff {
 
         httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setDoOutput(true);
-        OutputStream os = httpURLConnection.getOutputStream();
-
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
 
         String data =URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode(params[0], "UTF-8") + "&" +
                 URLEncoder.encode("firstName", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
@@ -44,10 +41,7 @@ public class URL_Stuff {
                 URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8") + "&" +
                 URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(params[5] , "UTF-8") + "&" +
                 URLEncoder.encode("code", "UTF-8") + "=" + URLEncoder.encode("0010", "UTF-8");
-        bufferedWriter.write(data);
-        bufferedWriter.flush();
-        bufferedWriter.close();
-        os.close();
+        Packet.Send(httpURLConnection, data);
         InputStream IS = httpURLConnection.getInputStream();
         IS.close();
         ((Activity) ctx).finish();
@@ -71,32 +65,14 @@ public class URL_Stuff {
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            InputStream inputStream = httpURLConnection.getInputStream();
-
-            StringBuilder stringBuilder = new StringBuilder();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
             String data = URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("Professor", "UTF-8") + "&" +
                     URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("Login", "UTF-8") + "&" +
                     URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("prof@gg", "UTF-8") + "&" +
                     URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8");
 
+            Packet.Send(httpURLConnection, data);
 
-            bufferedWriter.write(data);
-
-            String json_string;
-            while ((json_string = bufferedReader.readLine()) != null) {
-                stringBuilder.append(json_string + "\n");
-
-            }
-
-            inputStream.close();
-            outputStream.close();
-            return stringBuilder.toString().trim();//TODO o clasa care sa create packet
-
-
+            return Packet.Recieve(httpURLConnection);//TODO o clasa care sa create packet
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
