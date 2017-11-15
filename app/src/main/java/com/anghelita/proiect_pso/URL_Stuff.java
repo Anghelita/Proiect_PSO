@@ -4,12 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -72,7 +69,7 @@ public class URL_Stuff {
 
             Packet.Send(httpURLConnection, data);
 
-            return Packet.Recieve(httpURLConnection);//TODO o clasa care sa create packet
+            return Packet.Receive(httpURLConnection);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

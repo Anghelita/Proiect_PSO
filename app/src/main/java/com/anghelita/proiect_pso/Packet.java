@@ -24,7 +24,7 @@ public class Packet {
 //        bufferedWriter.close();
     }
 
-    public static String Recieve(HttpURLConnection httpURLConnection) throws IOException {
+    public static String Receive(HttpURLConnection httpURLConnection) throws IOException {
         InputStream inputStream = httpURLConnection.getInputStream();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String json_string;
