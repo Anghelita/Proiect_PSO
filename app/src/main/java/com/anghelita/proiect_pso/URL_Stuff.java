@@ -72,7 +72,7 @@ public class URL_Stuff {
 
             Packet.Send(httpURLConnection, data);
 
-            return Packet.Recieve(httpURLConnection);//TODO o clasa care sa create packet
+            return Packet.Recieve(httpURLConnection);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
