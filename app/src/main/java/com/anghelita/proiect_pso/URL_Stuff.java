@@ -3,6 +3,7 @@ package com.anghelita.proiect_pso;
 import android.app.Activity;
 import android.content.Context;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -61,18 +62,19 @@ public class URL_Stuff {
 
     public static String login(Context ctx,String...params) {
         try {
-            URL url = new URL(rer_url + "/init.php");
+            URL url = new URL(rer_url+"/init.php");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
-            String data = URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("Professor", "UTF-8") + "&" +
-                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("Login", "UTF-8") + "&" +
-                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("prof@gg", "UTF-8") + "&" +
-                    URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8");
 
+            String data =URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("Professor", "UTF-8") + "&" +
+                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("Login", "UTF-8") +'&'+
+                    URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode("prof@gg", "UTF-8") + "&" +
+                    URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8");
             Packet.Send(httpURLConnection, data);
 
-            return Packet.Recieve(httpURLConnection);
+            return Packet.Receive(httpURLConnection);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
