@@ -1,10 +1,13 @@
-package com.anghelita.proiect_pso;
+package com.anghelita.proiect_pso.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.anghelita.proiect_pso.Repository.BackgroundTask;
+import com.anghelita.proiect_pso.R;
 
 public class Register extends AppCompatActivity {
 
@@ -38,7 +41,7 @@ public class Register extends AppCompatActivity {
 
         if(password.equals(rePassword)) {
             BackgroundTask backgroundTask = new BackgroundTask(this,null);
-            backgroundTask.execute(method, firstName, lastName, password, mail, phone);
+           // backgroundTask.execute(method, firstName, lastName, password, mail, phone);
         }
         else
         {

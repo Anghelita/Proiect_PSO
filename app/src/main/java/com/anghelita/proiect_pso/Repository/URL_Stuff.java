@@ -1,20 +1,23 @@
-package com.anghelita.proiect_pso;
+package com.anghelita.proiect_pso.Repository;
 
 import android.app.Activity;
 import android.content.Context;
 
-import java.io.BufferedOutputStream;
+import com.anghelita.proiect_pso.Entity.User;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * Created by Traian on 13-Nov-17.
@@ -24,9 +27,26 @@ public class URL_Stuff {
 
     private static String rer_url="http://188.27.106.116:8080";
 
+    private static JsonParser jsonParser = new JsonParser();
 
 
-    public static String register(Context ctx, String ... params){
+    private static String encodeParameters(List<URLParameters>[] params){
+
+        String data;
+
+//        for (String param:params
+//             ) {
+//           // data += URLEncoder.encode(pa, "UTF-8") + "=" + URLEncoder.encode(params[0], "UTF-8") + "&"
+//
+//        }
+
+
+        return null;
+    }
+
+
+
+    public static String register(Context ctx, List<URLParameters>[] params){
 
         try {
         URL url = new URL(rer_url+"/init.php");
@@ -35,14 +55,15 @@ public class URL_Stuff {
         httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setDoOutput(true);
 
-        String data =URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode(params[0], "UTF-8") + "&" +
-                URLEncoder.encode("firstName", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
-                URLEncoder.encode("lastName", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8") + "&" +
-                URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8") + "&" +
-                URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8") + "&" +
-                URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(params[5] , "UTF-8") + "&" +
-                URLEncoder.encode("code", "UTF-8") + "=" + URLEncoder.encode("0010", "UTF-8");
-        Packet.Send(httpURLConnection, data);
+//        String data =URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode(params[0], "UTF-8") + "&" +
+//                URLEncoder.encode("firstName", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8") + "&" +
+//                URLEncoder.encode("lastName", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8") + "&" +
+//                URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(params[3], "UTF-8") + "&" +
+//                URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(params[4], "UTF-8") + "&" +
+//                URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(params[5] , "UTF-8") + "&" +
+//                URLEncoder.encode("code", "UTF-8") + "=" + URLEncoder.encode("0010", "UTF-8");
+
+//        Packet.Send(httpURLConnection, data);
         InputStream IS = httpURLConnection.getInputStream();
         IS.close();
         ((Activity) ctx).finish();
@@ -60,34 +81,32 @@ public class URL_Stuff {
 
     }
 
-    public static String login(Context ctx,String...params) {
+    public static String login(Context ctx) {
         try {
-            URL url = new URL(rer_url+"/init.php");
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setDoOutput(true);
+            HttpURLConnection httpURLConnection = URLParameters.makeURLPostConnection(rer_url+"/Login.php");
+            String data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(User.getEmail(), "UTF-8");
 
-            String data =URLEncoder.encode("userType", "UTF-8") + "=" + URLEncoder.encode("Professor", "UTF-8") + "&" +
-                    URLEncoder.encode("method", "UTF-8") + "=" + URLEncoder.encode("Login", "UTF-8") +'&'+
-                    URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode("prof@gg", "UTF-8") + "&" +
-                    URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8");
             Packet.Send(httpURLConnection, data);
+            String string = Packet.Receive(httpURLConnection);
 
-            return Packet.Receive(httpURLConnection);
+            jsonParser.setUser(string);
 
+            return null;
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return e.getMessage().toString();
         } catch (IOException e) {
             e.printStackTrace();
             return e.getMessage().toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
+        return null;
 
     }
 
-    public static String Table(Context ctx,String...params) {
+    public static String Table(Context ctx) {
         try {
             URL url = new URL("http://188.27.106.116:8080/getJson.php");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

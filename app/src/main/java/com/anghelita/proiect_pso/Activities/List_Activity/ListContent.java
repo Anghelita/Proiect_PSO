@@ -1,7 +1,6 @@
-package com.anghelita.proiect_pso;
+package com.anghelita.proiect_pso.Activities.List_Activity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by c1baN on 11/15/2017.

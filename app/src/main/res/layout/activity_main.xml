@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.anghelita.proiect_pso.MainActivity">
+    tools:context="com.anghelita.proiect_pso.Activities.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -25,6 +25,7 @@
             android:ems="10"
             android:hint="@string/user"
             android:inputType="textPersonName"
+            android:text="prof@gg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="7dp" />

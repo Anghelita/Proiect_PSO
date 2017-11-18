@@ -1,4 +1,4 @@
-package com.anghelita.proiect_pso;
+package com.anghelita.proiect_pso.Activities.List_Activity;
 
 /**
  * Created by c1baN on 11/15/2017.

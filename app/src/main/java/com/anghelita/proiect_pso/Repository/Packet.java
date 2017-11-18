@@ -1,4 +1,4 @@
-package com.anghelita.proiect_pso;
+package com.anghelita.proiect_pso.Repository;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -1,14 +1,10 @@
-package com.anghelita.proiect_pso;
+package com.anghelita.proiect_pso.Activities.List_Activity;
 
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+
+import com.anghelita.proiect_pso.R;
 
 public class ListActivity extends AppCompatActivity{
 
