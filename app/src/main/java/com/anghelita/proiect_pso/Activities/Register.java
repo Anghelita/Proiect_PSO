@@ -6,8 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.anghelita.proiect_pso.Entity.User;
 import com.anghelita.proiect_pso.Repository.BackgroundTask;
 import com.anghelita.proiect_pso.R;
+import com.anghelita.proiect_pso.Repository.MyLambda;
+import com.anghelita.proiect_pso.Repository.URL_Stuff;
 
 public class Register extends AppCompatActivity {
 
@@ -17,6 +20,8 @@ public class Register extends AppCompatActivity {
     EditText RePassword;
     EditText Mail;
     EditText Phone;
+
+    User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +36,16 @@ public class Register extends AppCompatActivity {
     }
 
     public void Register(View view) {//TODO Sa testezi toate kkturile ca sunt corecte
-        String method = "RegisterStudent";
-        String firstName=FirstName.getText().toString();
-        String lastName=LastName.getText().toString();
-        String password=Password.getText().toString();
-        String rePassword=RePassword.getText().toString();
-        String mail=Mail.getText().toString();
-        String phone=Phone.getText().toString();
 
-        if(password.equals(rePassword)) {
-            BackgroundTask backgroundTask = new BackgroundTask(this,null);
-           // backgroundTask.execute(method, firstName, lastName, password, mail, phone);
-        }
-        else
-        {
-            Toast.makeText(this, "Incorrect Password!", Toast.LENGTH_SHORT).show();
-        }
+        user.setFirstName(FirstName.getText().toString());
+        user.setLastName(LastName.getText().toString());
+        user.setPassword(Password.getText().toString());
+        user.setPassword(Mail.getText().toString());
+        user.setPhone(Phone.getText().toString());
+
+
+        BackgroundTask backgroundTask = new BackgroundTask(this, null);
+        MyLambda login = () -> URL_Stuff.login(this);
+        backgroundTask.execute(login);
     }
 }

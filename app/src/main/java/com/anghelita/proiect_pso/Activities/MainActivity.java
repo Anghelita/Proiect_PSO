@@ -10,9 +10,11 @@ import android.widget.TextView;
 import com.anghelita.proiect_pso.Entity.User;
 import com.anghelita.proiect_pso.Repository.BackgroundTask;
 import com.anghelita.proiect_pso.R;
+import com.anghelita.proiect_pso.Repository.MyLambda;
 import com.anghelita.proiect_pso.Repository.URLParameters;
 import com.anghelita.proiect_pso.Repository.URL_Stuff;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         user.setEmail(EMAIL.getText().toString());
 
-
-        backgroundTask.execute();
+        MyLambda login = () -> URL_Stuff.login(this);
+        backgroundTask.execute(login);
     }
 
     public void Register(View view) {

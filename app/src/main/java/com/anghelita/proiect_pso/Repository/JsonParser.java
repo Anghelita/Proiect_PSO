@@ -19,8 +19,8 @@ public class JsonParser {
         JSONObject jsonObject = new JSONObject(string);
 
         JSONArray jsonArray = jsonObject.getJSONArray("Server_response");
-        int count =0;
-        while(count < jsonArray.length()) {
+        int count = 0;
+        while (count < jsonArray.length()) {
             JSONObject JO = jsonArray.getJSONObject(count);
             user.setFirstName(JO.getString("first_name"));
             user.setLastName(JO.getString("last_name"));
@@ -28,9 +28,19 @@ public class JsonParser {
             user.setEmail(JO.getString("email"));
             user.setPhone(JO.getString("phone"));
             user.setCode(Integer.parseInt(JO.getString("code")));
-            count ++;
+            count++;
         }
 
     }
 
+    public void setList(String string) throws JSONException {
+        JSONObject jsonObject = new JSONObject(string);
+
+        JSONArray jsonArray = jsonObject.getJSONArray("Server_response");
+        int count = 0;
+        while (count < jsonArray.length()) {
+            //TODO se adauga kkturi in calsa de liste
+
+        }
+    }
 }
