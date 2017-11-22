@@ -1,11 +1,8 @@
 package com.anghelita.proiect_pso.Repository;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
-
-import com.anghelita.proiect_pso.Entity.User;
+import android.widget.Toast;
 
 /**
  * Created by Traian on 12-Nov-17.
@@ -13,19 +10,16 @@ import com.anghelita.proiect_pso.Entity.User;
 
 public class BackgroundTask extends AsyncTask<MyLambda,Void,Void> {
 
-    @SuppressLint("StaticFieldLeak")
     private Context ctx;
-    @SuppressLint("StaticFieldLeak")
-    private TextView log;
+    private String response;
 
-    public BackgroundTask(Context ctx, TextView log){
+    public BackgroundTask(Context ctx) {
         this.ctx = ctx;
-        this.log = log;
     }
 
     @Override
     protected Void doInBackground(MyLambda... myLambdas) {
-        myLambdas[0].execute();
+        response = myLambdas[0].execute();
         return null;
     }
 
@@ -34,11 +28,10 @@ public class BackgroundTask extends AsyncTask<MyLambda,Void,Void> {
         super.onPreExecute();
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onPostExecute(Void aVoid) {
-        log.setText("User Logged: "+User.getFirstName()+" "+User.getLastName()+User.getEmail()+"\n");
         super.onPostExecute(aVoid);
+        Toast.makeText(ctx, response, Toast.LENGTH_SHORT).show();
     }
 
     @Override

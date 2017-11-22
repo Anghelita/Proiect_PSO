@@ -6,19 +6,21 @@ package com.anghelita.proiect_pso.Entity;
 
 public class User{
 
-    private static String firstName;
-    private static String lastName;
-    private static String password;
-    private static String email;
-    private static String phone;
-    private static int code;
+    private static String firstName = null;
+    private static String lastName = null;
+    private static String password = null;
+    private static String email = null;
+    private static String phone = null;
+    private static String type = null;
+    private static int code = -1;
+
 
     public static String getFirstName() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        User.firstName = firstName;
     }
 
     public static String getLastName() {
@@ -26,7 +28,7 @@ public class User{
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        User.lastName = lastName;
     }
 
     public static String getPassword() {
@@ -34,7 +36,7 @@ public class User{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        User.password = password;
     }
 
     public static String getEmail() {
@@ -42,7 +44,7 @@ public class User{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        User.email = email;
     }
 
     public static String getPhone() {
@@ -50,23 +52,38 @@ public class User{
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        User.phone = phone;
     }
 
     public static int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public static void setCode(int code) {
+        User.code = code;
+    }
+
+    public static String getType() {
+        return type;
+    }
+
+    public static void setType(String type) {
+        User.type = type;
     }
 
     public void setUser(String firstName, String lastName,String password, String email,String phone, int code){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.code = code;
+        User.firstName = firstName;
+        User.lastName = lastName;
+        User.password = password;
+        User.email = email;
+        User.phone = phone;
+    }
+
+    public void removeUser() {
+        firstName = null;
+        lastName = null;
+        password = null;
+        email = null;
+        phone = null;
     }
 }

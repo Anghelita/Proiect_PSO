@@ -27,7 +27,14 @@ public class JsonParser {
             user.setPassword(JO.getString("password"));
             user.setEmail(JO.getString("email"));
             user.setPhone(JO.getString("phone"));
-            user.setCode(Integer.parseInt(JO.getString("code")));
+            count++;
+        }
+
+        jsonArray = jsonObject.getJSONArray("Server_Error");
+        count = 0;
+        while (count < jsonArray.length()) {
+            JSONObject JO = jsonArray.getJSONObject(count);
+            //TODO The Error Stuff
             count++;
         }
 

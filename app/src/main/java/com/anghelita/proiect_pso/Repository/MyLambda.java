@@ -5,5 +5,5 @@ package com.anghelita.proiect_pso.Repository;
  */
 
 public interface MyLambda {
-    public void execute();
+    String execute();
 }
