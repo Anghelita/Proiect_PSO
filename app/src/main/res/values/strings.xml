@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Proiect_PSO</string>
+    <string name="user">Email</string>
+    <string name="pass">password</string>
+    <string name="remember_credentials">Remember me</string>
+    <string name="Login">Login</string>
+    <string name="register">Register</string>
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="Password">Password</string>
+    <string name="Repass">Re enter Password</string>
+    <string name="Email">Mail</string>
+    <string name="PhoneNumber">Phone</string>
+    <string name="Name">Name</string>
 </resources>
