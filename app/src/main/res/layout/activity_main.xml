@@ -27,7 +27,6 @@
             android:ems="10"
             android:hint="@string/user"
             android:inputType="textEmailAddress"
-            android:text="prof@gg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="7dp" />

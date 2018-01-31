@@ -2,36 +2,34 @@ package com.anghelita.proiect_pso.Repository;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 /**
  * Created by Traian on 12-Nov-17.
  */
 
-public class BackgroundTask extends AsyncTask<MyLambda,Void,Void> {
+public class BackgroundTask extends AsyncTask<MyLambda, Void, String> {
 
+    public String response;
     private Context ctx;
-    private String response;
 
     public BackgroundTask(Context ctx) {
         this.ctx = ctx;
     }
 
     @Override
-    protected Void doInBackground(MyLambda... myLambdas) {
+    protected String doInBackground(MyLambda... myLambdas) {
         response = myLambdas[0].execute();
-        return null;
+        return response;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-        Toast.makeText(ctx, response, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -11,8 +11,7 @@ public class User{
     private static String password = null;
     private static String email = null;
     private static String phone = null;
-    private static String type = null;
-    private static int code = -1;
+    private static String Group = null;
 
 
     public static String getFirstName() {
@@ -21,6 +20,14 @@ public class User{
 
     public void setFirstName(String firstName) {
         User.firstName = firstName;
+    }
+
+    public static String getGroup() {
+        return Group;
+    }
+
+    public void setGroup(String group) {
+        Group = group;
     }
 
     public static String getLastName() {
@@ -55,21 +62,6 @@ public class User{
         User.phone = phone;
     }
 
-    public static int getCode() {
-        return code;
-    }
-
-    public static void setCode(int code) {
-        User.code = code;
-    }
-
-    public static String getType() {
-        return type;
-    }
-
-    public static void setType(String type) {
-        User.type = type;
-    }
 
     public void setUser(String firstName, String lastName,String password, String email,String phone, int code){
         User.firstName = firstName;

@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.anghelita.proiect_pso.Activities.List_Activity.ListActivity;
 import com.anghelita.proiect_pso.Entity.User;
 import com.anghelita.proiect_pso.R;
 import com.anghelita.proiect_pso.Repository.BackgroundTask;
 import com.anghelita.proiect_pso.Repository.MyLambda;
 import com.anghelita.proiect_pso.Repository.URL_Stuff;
+
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void Login(View view) {
+    public void Login(View view) throws ExecutionException, InterruptedException {
 
 
         BackgroundTask backgroundTask = new BackgroundTask(this);
@@ -38,11 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
         user.setEmail(EMAIL.getText().toString());
         user.setPassword(PASS.getText().toString());
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         MyLambda login = () -> URL_Stuff.login(this);
         backgroundTask.execute(login);
 
+        String s = backgroundTask.get();
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+
+        if (s == "User Logged") {
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void Register(View view) {
@@ -51,7 +60,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-
 
 }

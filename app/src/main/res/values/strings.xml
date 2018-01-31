@@ -14,6 +14,7 @@
     <string name="Name">Name</string>
     <string name="Code">Code</string>
     <string name="CodeNumber">Code number</string>
+    <string name="Group">Grupa</string>
     <string-array name="User_Select">
         <item>Professor</item>
         <item>Student</item>
