@@ -12,7 +12,15 @@ public class User{
     private static String email = null;
     private static String phone = null;
     private static String Group = null;
+    private static String IDDownload = null;
 
+    public static String getIDDownload() {
+        return IDDownload;
+    }
+
+    public static void setIDDownload(String IDDownload) {
+        User.IDDownload = IDDownload;
+    }
 
     public static String getFirstName() {
         return firstName;

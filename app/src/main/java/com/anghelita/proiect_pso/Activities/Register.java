@@ -19,6 +19,8 @@ import org.json.JSONException;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
@@ -66,7 +68,35 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public void Register(View view) throws ExecutionException, InterruptedException {//TODO: Sa testezi toate kkturile ca sunt corecte
+    public void Register(View view) throws ExecutionException, InterruptedException {
+
+        Pattern p = Pattern.compile("^[a-zA-Z ,.'-]+$");
+        Matcher m = p.matcher(FirstName.getText().toString());
+        if (!m.matches()) {
+            Toast.makeText(this, "Invalid first name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        m = p.matcher(LastName.getText().toString());
+        if (!m.matches()) {
+            Toast.makeText(this, "Invalid last name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!Password.getText().toString().equals(RePassword.getText().toString())) {
+            Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        p = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
+        m = p.matcher(Mail.getText().toString());
+        if (!m.matches()) {
+            Toast.makeText(this, "Invalid mail", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        p = Pattern.compile("^[0-9]{10}");
+        m = p.matcher(Phone.getText().toString());
+        if (!m.matches()) {
+            Toast.makeText(this, "Invalid phone number", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         user.setFirstName(FirstName.getText().toString());
         user.setLastName(LastName.getText().toString());
@@ -85,4 +115,5 @@ public class Register extends AppCompatActivity {
         String s = backgroundTask.get();
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
 }

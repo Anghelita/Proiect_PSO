@@ -36,6 +36,20 @@ public class JsonParser {
         }
     }
 
+    public String getDownload(String string) throws JSONException {
+        JSONObject jsonObject = new JSONObject(string);
+
+        JSONArray jsonArray = jsonObject.getJSONArray("Server_response");
+        int count = 0;
+        String s = "";
+        while (count < jsonArray.length()) {
+            JSONObject JO = jsonArray.getJSONObject(count);
+            s = JO.getString("content");
+            count++;
+        }
+        return s;
+    }
+
     public String getError(String string) throws JSONException {
         JSONObject jsonObject = new JSONObject(string);
 

@@ -23,6 +23,7 @@ import java.util.List;
 public class URL_Stuff {
 
     public static List<Item> list;
+    public static String download;
     private static String rer_url = "http://188.25.128.117:8080";
     private static JsonParser jsonParser = new JsonParser();
 
@@ -147,6 +148,36 @@ public class URL_Stuff {
             return "The server does w3erd stuff!";
         }
         return "List Downloaded";
+    }
+
+    public static String download(Context ctx) {
+        String string;
+        try {
+            HttpURLConnection httpURLConnection = URLParameters.makeURLPostConnection(rer_url + "/Download.php");
+            String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(User.getIDDownload(), "UTF-8");
+
+            Packet.Send(httpURLConnection, data);
+            string = Packet.Receive(httpURLConnection);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+
+        try {
+            return jsonParser.getError(string);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            download = jsonParser.getDownload(string);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "The server does w3erd stuff!";
+        }
+        return "Download complete";
     }
 
 }
